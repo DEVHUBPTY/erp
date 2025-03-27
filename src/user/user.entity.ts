@@ -9,7 +9,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Cart } from 'src/cart/cart.entity';
 
 @Entity()
 export class Role {
@@ -28,6 +27,9 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ unique: true, nullable: false, generated: 'uuid' })
+  userId: string;
+
   @Column({ unique: true, nullable: false })
   email: string;
 
@@ -39,6 +41,12 @@ export class User {
 
   @Column({ nullable: true })
   roleId: number;
+
+  @Column({ nullable: true })
+  address: string;
+
+  @Column({ nullable: true })
+  phone: string;
 
   @ManyToOne(() => Role, (role) => role.users)
   @JoinColumn({ name: 'roleId' })
