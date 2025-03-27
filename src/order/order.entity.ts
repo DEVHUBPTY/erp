@@ -7,7 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { ProductVariant } from '@product/product.entity';
+import { Product, ProductVariant } from '@product/product.entity';
 import { User } from '@/user/user.entity';
 
 export enum OrderStatus {
@@ -38,7 +38,7 @@ export class Order {
   orderNumber: string;
 
   @Column({ type: 'timestamp', nullable: false })
-  orderDate: Date;
+  createdAt: Date;
 
   @Column({
     type: 'enum',
@@ -75,12 +75,12 @@ export class Order {
   @Column({ nullable: true })
   proofOfPayment: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'clientId' })
-  client: User;
+  @ManyToOne(() => User, (user) => user)
+  @JoinColumn({ name: 'customerId' })
+  customer: User;
 
   @Column()
-  clientId: number;
+  customerId: number;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'sellerId' })
@@ -106,9 +106,16 @@ export class OrderDetail {
   order: Order;
 
   @Column()
-  productVariantId: number;
+  productId: string;
 
-  @ManyToOne(() => ProductVariant)
+  @ManyToOne(() => Product, (product) => product.id)
+  @JoinColumn({ name: 'productId' })
+  product: Product;
+
+  @Column()
+  productVariantId: string;
+
+  @ManyToOne(() => ProductVariant, (variant) => variant.variantId)
   @JoinColumn({ name: 'productVariantId' })
   productVariant: ProductVariant;
 
