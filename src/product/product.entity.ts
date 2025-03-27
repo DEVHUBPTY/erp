@@ -69,6 +69,9 @@ export class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Column({ unique: true, generated: 'uuid' })
+    productId: string;
+
     @Column()
     name: string;
 
@@ -103,6 +106,9 @@ export class Product {
 export class ProductVariant {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column({ unique: true, generated: 'uuid' })
+    variantId: string;
 
     @Column()
     productId: string;
