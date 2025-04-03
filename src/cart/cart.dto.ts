@@ -5,12 +5,14 @@ import {
   ValidateNested,
   IsArray,
   Min,
+  IsNotEmpty,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateCartProductDto {
-  @IsInt()
-  productVariantId: number;
+  @IsString()
+  @IsNotEmpty()
+  productId: string;
 
   @IsInt()
   @Min(1)

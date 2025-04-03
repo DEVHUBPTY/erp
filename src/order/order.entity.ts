@@ -7,7 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { Product, ProductVariant } from '@product/product.entity';
+import { Product } from '@product/product.entity';
 import { User } from '@/user/user.entity';
 
 export enum OrderStatus {
@@ -90,7 +90,10 @@ export class Order {
   sellerId: number;
 
   @Column({ nullable: true })
-  notes: string;
+  sellerNotes: string;
+
+  @Column({ nullable: true })
+  adminNotes: string;
 }
 
 @Entity()
@@ -111,13 +114,6 @@ export class OrderDetail {
   @ManyToOne(() => Product, (product) => product.id)
   @JoinColumn({ name: 'productId' })
   product: Product;
-
-  @Column()
-  productVariantId: string;
-
-  @ManyToOne(() => ProductVariant, (variant) => variant.variantId)
-  @JoinColumn({ name: 'productVariantId' })
-  productVariant: ProductVariant;
 
   @Column()
   quantity: number;

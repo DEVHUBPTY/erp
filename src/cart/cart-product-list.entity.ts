@@ -7,8 +7,8 @@ import {
 } from 'typeorm';
 
 import { Cart } from './cart.entity';
-import { ProductVariant } from '@product/product.entity';
 import { PriceStatus } from '../order/order.entity';
+import { Product } from '@/product/product.entity';
 
 @Entity()
 export class CartProductList {
@@ -23,11 +23,11 @@ export class CartProductList {
   cart: Cart;
 
   @Column()
-  productVariantId: number;
+  productId: string;
 
-  @ManyToOne(() => ProductVariant)
-  @JoinColumn({ name: 'productVariantId' })
-  productVariant: ProductVariant;
+  @ManyToOne(() => Product, (product) => product.id)
+  @JoinColumn({ name: 'productId' })
+  product: Product;
 
   @Column()
   quantity: number;

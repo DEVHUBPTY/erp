@@ -37,7 +37,7 @@ export class Cart {
   productList: CartProductList[];
 
   @Column({ nullable: true })
-  notes: string;
+  sellerNotes: string;
 
   @CreateDateColumn()
   createdAt: Date;

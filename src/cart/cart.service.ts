@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateCartDto } from './dto/create-cart.dto';
+import { CreateCartDto } from './cart.dto';
 import { Cart } from './cart.entity';
 import { Repository } from 'typeorm';
 
