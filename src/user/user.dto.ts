@@ -10,23 +10,45 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-
-import { AccountStatus } from './user.entity';
+import { AccountStatus } from './entity/account.entity';
 
 /**
  * DTO para la autenticación de usuarios
  */
 export class LoginDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: 'usuario@ejemplo.com',
+    description: 'Correo electrónico del usuario',
+    required: true
+  })
   @IsEmail()
   @IsNotEmpty()
   readonly email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'contraseña123',
+    description: 'Contraseña del usuario (mínimo 8 caracteres)',
+    required: true,
+    minLength: 8
+  })
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
   readonly password: string;
+}
+
+export class LoginResponseDto {
+  @ApiProperty({
+    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+    description: 'Token de acceso JWT'
+  })
+  access_token: string;
+
+  @ApiProperty({
+    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+    description: 'Token de refresco JWT'
+  })
+  refresh_token: string;
 }
 
 export class CreateUserDto {

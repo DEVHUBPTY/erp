@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CartController } from './cart.controller';
 import { CartService } from './cart.service';
-import { Cart } from './cart.entity';
+import { Cart } from './entity/cart.entity';
 import { UserModule } from '../user/user.module';
 import { ProductModule } from '../product/product.module';
-import { CartProductList } from './cart-product-list.entity';
+import { CartProductList } from './entity/cart-product-list.entity';
 
 @Module({
   imports: [
@@ -17,4 +17,4 @@ import { CartProductList } from './cart-product-list.entity';
   providers: [CartService],
   exports: [CartService],
 })
-export class CartModule {}
+export class CartModule { }
