@@ -6,10 +6,15 @@ import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/database.module';
 import { OrderModule } from './order/order.module';
 import { CartModule } from './cart/cart.module';
-
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [ProductModule, UserModule, DatabaseModule, OrderModule, CartModule],
+  imports: [ProductModule, UserModule, DatabaseModule, OrderModule, CartModule, AuthModule, ConfigModule.forRoot({
+    isGlobal: true,
+    envFilePath: '.env',
+  }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

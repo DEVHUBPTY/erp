@@ -7,8 +7,7 @@ import {
 } from 'typeorm';
 
 import { Cart } from './cart.entity';
-import { PriceStatus } from '../order/order.entity';
-import { Product } from '@/product/product.entity';
+import { Product } from '@/product/entity/product.enitty';
 
 @Entity()
 export class CartProductList {

@@ -10,90 +10,160 @@ import {
 
 // Response DTO for getting products
 export class GetProductResponseDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: '1',
+    description: 'ID único del producto'
+  })
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Laptop HP 15.6"',
+    description: 'Nombre del producto'
+  })
   name: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty({
+    example: 'Laptop HP con procesador Intel Core i5',
+    description: 'Descripción detallada del producto',
+    required: false
+  })
   description?: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'HP123456789',
+    description: 'Código de barras del producto'
+  })
   barcode: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'https://ejemplo.com/imagen.jpg',
+    description: 'URL de la imagen del producto'
+  })
   image: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: {
+      id: 1,
+      name: 'Electrónicos'
+    },
+    description: 'Categoría del producto'
+  })
   category: {
     id: number;
     name: string;
   };
 
-  @ApiProperty()
+  @ApiProperty({
+    example: {
+      id: 1,
+      name: 'HP'
+    },
+    description: 'Marca del producto'
+  })
   brand: {
     id: number;
     name: string;
   };
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 999.99,
+    description: 'Precio del producto'
+  })
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 50,
+    description: 'Cantidad disponible en stock'
+  })
   stock: number;
 
-  @ApiProperty({ required: false })
+  @ApiProperty({
+    example: '2024-12-31',
+    description: 'Fecha de expiración del producto',
+    required: false
+  })
   expiration?: Date;
 }
 
 // DTO for creating products
 export class CreateProductDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Laptop HP 15.6"',
+    description: 'Nombre del producto',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Laptop HP con procesador Intel Core i5',
+    description: 'Descripción detallada del producto',
+    required: false
+  })
   @IsString()
   @IsOptional()
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'HP123456789',
+    description: 'Código de barras del producto',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   barcode: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'https://ejemplo.com/imagen.jpg',
+    description: 'URL de la imagen del producto',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   image: string;
 
   @ApiProperty({
-    description: 'Select a supplier to get its ID',
+    example: 1,
+    description: 'ID del proveedor',
+    required: true
   })
   @IsNumber()
   @IsNotEmpty()
   supplierId: number;
 
   @ApiProperty({
-    description: 'Select a category to get its ID',
+    example: 1,
+    description: 'ID de la categoría',
+    required: true
   })
   @IsNumber()
   @IsNotEmpty()
   categoryId: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 999.99,
+    description: 'Precio del producto',
+    required: true
+  })
   @IsNumber()
   @IsNotEmpty()
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 50,
+    description: 'Cantidad disponible en stock',
+    required: true
+  })
   @IsNumber()
   @IsNotEmpty()
   stock: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: '2024-12-31',
+    description: 'Fecha de expiración del producto',
+    required: true
+  })
   @IsDate()
   @IsNotEmpty()
   expiration: Date;
@@ -101,52 +171,92 @@ export class CreateProductDto {
 
 // DTO for updating products
 export class UpdateProductDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: '1',
+    description: 'ID del producto a actualizar',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Laptop HP 15.6" Actualizada',
+    description: 'Nuevo nombre del producto',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'Laptop HP con procesador Intel Core i5 - Modelo 2024',
+    description: 'Nueva descripción del producto',
+    required: false
+  })
   @IsString()
   @IsOptional()
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'HP123456789',
+    description: 'Nuevo código de barras del producto',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   barcode: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 'https://ejemplo.com/nueva-imagen.jpg',
+    description: 'Nueva URL de la imagen del producto',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   image: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 1,
+    description: 'Nuevo ID del proveedor',
+    required: true
+  })
   @IsNumber()
   @IsNotEmpty()
   supplierId: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 1,
+    description: 'Nuevo ID de la categoría',
+    required: true
+  })
   @IsNumber()
   @IsNotEmpty()
   categoryId: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 1099.99,
+    description: 'Nuevo precio del producto',
+    required: true
+  })
   @IsNumber()
   @IsNotEmpty()
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: 75,
+    description: 'Nueva cantidad disponible en stock',
+    required: true
+  })
   @IsNumber()
   @IsNotEmpty()
   stock: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    example: '2024-12-31',
+    description: 'Nueva fecha de expiración del producto',
+    required: true
+  })
   @IsDate()
   @IsNotEmpty()
   expiration?: Date;
@@ -154,7 +264,11 @@ export class UpdateProductDto {
 
 // DTO for deleting products
 export class DeleteProductDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: '1',
+    description: 'ID del producto a eliminar',
+    required: true
+  })
   @IsString()
   @IsNotEmpty()
   id: string;
