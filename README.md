@@ -34,7 +34,7 @@ bun install
 Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
 ```env
 DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/devhub_erp
-JWT_SECRET=tu_secreto_jwt
+JWT_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiZWplbXBsby5AY29ycmVvLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxMjQxMDA0NywiZXhwIjoxNzEyNDEwOTA3fQ.zRbFmj6QbJkAjzR8V3dlKMWCu7iI1DOs0S7yVe3XhrA
 PORT=3000
 NODE_ENV=development
 ```
