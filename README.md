@@ -33,10 +33,12 @@ bun install
 3. Configurar variables de entorno:
 Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
 ```env
-DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/devhub_erp
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=1009
+DATABASE_NAME=inventory
 JWT_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiZWplbXBsby5AY29ycmVvLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxMjQxMDA0NywiZXhwIjoxNzEyNDEwOTA3fQ.zRbFmj6QbJkAjzR8V3dlKMWCu7iI1DOs0S7yVe3XhrA
-PORT=3000
-NODE_ENV=development
 ```
 
 4. Ejecutar migraciones de la base de datos:
