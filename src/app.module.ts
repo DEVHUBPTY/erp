@@ -11,7 +11,6 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [ProductModule, UserModule, DatabaseModule, OrderModule, CartModule, AuthModule, ConfigModule.forRoot({
     isGlobal: true,
-    envFilePath: '.env',
   }),
   ],
   controllers: [AppController],

@@ -12,19 +12,25 @@ import { OrderDetail } from 'src/order/entity/detail.entity';
 import { Category } from 'src/product/entity/category.entity';
 import { AuthToken } from '@/auth/entity/auth.entity';
 import { RefreshToken } from '@/auth/entity/refresh.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 // Importa otras entidades aquí
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '1009',
-      database: 'inventory',
-      entities: [User, Role, AccountStatus, Cart, CartProductList, Product, Supplier, Order, OrderDetail, Category, AuthToken, RefreshToken],
-      synchronize: true, // ⚠️ Solo para desarrollo
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DATABASE_HOST'),
+        port: configService.get<number>('DATABASE_PORT'),
+        username: configService.get<string>('DATABASE_USERNAME'),
+        password: configService.get<string>('DATABASE_PASSWORD'),
+        database: configService.get<string>('DATABASE_NAME'),
+        entities: [User, Role, AccountStatus, Cart, CartProductList, Product, Supplier, Order, OrderDetail, Category, AuthToken, RefreshToken],
+        synchronize: true, // ⚠️ Solo para desarrollo
+      }),
     }),
   ],
 })
