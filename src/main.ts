@@ -1,8 +1,7 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,11 +14,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   )
-
-  // 🔐 Aplica el AuthGuard globalmente pero excluye el endpoint de login
-  app.useGlobalGuards(new (AuthGuard('jwt'))({
-    exclude: ['/auth/login']
-  }));
 
   // Configuración de Swagger
   const config = new DocumentBuilder()
@@ -38,7 +32,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/swagger', app, document);
+  SwaggerModule.setup('api/docs', app, document);
 
   // Habilitar CORS
   app.enableCors();
@@ -46,5 +40,6 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 
   console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`API Documentation: ${await app.getUrl()}/api/docs`);
 }
 bootstrap();
